@@ -1,0 +1,2 @@
+1,16,31,46 * * * *      /speedtest.py  >>/var/log/speedtest.log 2>&1
+# An empty line is required at the end of this file for a valid cron file.
