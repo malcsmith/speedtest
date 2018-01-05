@@ -3,7 +3,8 @@ MAINTAINER Malcolm Smith
 
 # Install Supporting Packages
 RUN apt-get -q update && \
-  apt-get install -qy curl python wget  python-mysql.connector python-dev libmysqlclient-dev python-pip && \
+  apt-get install -qy curl python wget  cron \
+  python-mysql.connector python-dev libmysqlclient-dev python-pip && \
   apt-get -q clean && \
   rm -rf /var/lib/apt/lists/*
 
@@ -28,4 +29,4 @@ RUN chmod 0644 /etc/cron.d/speedtest-cron
 RUN touch /var/log/speedtest.log
  
 # Run the command on container startup
-CMD cron && tail -f /var/log/speedtest.log
+CMD ["cron", "-f"]
