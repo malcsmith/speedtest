@@ -43,7 +43,7 @@ speeddate = row[3]
 pingtime = row[5]
 downspeed = float( row[6]) / 1000000
 upspeed = float (row[7]) / 1000000
-
+print(speeddate,pingtime,downspeed,upspeed)
 
 cursor = cnx.cursor()
 cur_time = time.time()
