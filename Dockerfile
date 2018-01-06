@@ -31,4 +31,4 @@ RUN crontab /etc/cron.d/speedtest-cron
 RUN touch /var/log/speedtest.log
  
 # Run the command on container startup
-CMD ["cron", "-f"]
+CMD ["/start.sh"]
