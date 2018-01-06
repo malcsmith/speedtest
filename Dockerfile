@@ -17,6 +17,8 @@ RUN apt-get -q update && \
 #copy and prep speedtest
   COPY speedtest.py /speedtest.py
   RUN chmod a+x /speedtest.py
+  COPY start.sh /start.sh
+  RUN chmod a+x /start.sh
 
 
 # Add crontab file in the cron directory
