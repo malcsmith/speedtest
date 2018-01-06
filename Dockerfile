@@ -24,8 +24,6 @@ ADD crontab /etc/cron.d/speedtest-cron
  
 # Give execution rights on the cron job
 RUN chmod 0644 /etc/cron.d/speedtest-cron
-
-RUN crontab /etc/cron.d/speedtest-cron
  
 # Create the log file to be able to run tail
 RUN touch /var/log/speedtest.log
