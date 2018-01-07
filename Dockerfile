@@ -17,8 +17,6 @@ RUN apt-get -q update && \
 #copy and prep speedtest
   COPY speedtest.py /speedtest.py
   RUN chmod a+x /speedtest.py
-  COPY start.sh /start.sh
-  RUN chmod a+x /start.sh
 
 
 # Add crontab file in the cron directory
@@ -26,11 +24,9 @@ ADD crontab /etc/cron.d/speedtest-cron
  
 # Give execution rights on the cron job
 RUN chmod 0644 /etc/cron.d/speedtest-cron
-
-RUN crontab /etc/cron.d/speedtest-cron
  
 # Create the log file to be able to run tail
 RUN touch /var/log/speedtest.log
  
 # Run the command on container startup
-CMD ["/start.sh"]
+CMD ["cron", "-f"]

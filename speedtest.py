@@ -32,8 +32,7 @@ cnx = MySQLdb.connect(**config)
 
 
 print('running speedtest')
-#by convention the docker container has speedtest-cli in the root directory
-speed = subprocess.check_output(["/speedtest-cli","--csv"])
+speed = subprocess.check_output(["./speedtest-cli","--csv"])
 print (speed)
 f = StringIO(speed)
 reader = csv.reader(f, delimiter=',')
