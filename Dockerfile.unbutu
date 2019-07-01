@@ -1,10 +1,12 @@
-FROM alpine:latest
+FROM ubuntu:16.04
 MAINTAINER Malcolm Smith
 
 # Install Supporting Packages
-RUN apk --no-cache  -q update && \
-  apk add --no-cache bash curl python wget  \
-  py-mysqldb python-dev mysql-client py-pip tini 
+RUN apt-get -q update && \
+  apt-get install -qy curl python wget  cron \
+  python-mysql.connector python-dev libmysqlclient-dev python-pip && \
+  apt-get -q clean && \
+  rm -rf /var/lib/apt/lists/*
 
 #  RUN pip install -U pip && pip install MySQL-python
   RUN  pip install MySQL-python
@@ -26,8 +28,6 @@ RUN chmod 0644 /etc/cron.d/speedtest-cron
  
 # Create the log file to be able to run tail
 RUN touch /var/log/speedtest.log
-
-RUN crontab -l | { cat; echo "1,16,31,46 * * * *  /speedtest.py " ; echo "* * * * *           echo test" ; } | crontab -
  
 # Run the command on container startup
-CMD ["/usr/sbin/crond", "-f"]
+CMD ["cron", "-f"]

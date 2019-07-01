@@ -21,8 +21,8 @@ import csv
 config = {
   'user': 'speed',
   'passwd': 'tiger',
-  'host': '192.168.1.1',
-  'db': 'speedlog'
+  'host': '192.168.1.27',
+  'db': 'Stats'
 }
 
 print('running Database')
@@ -32,7 +32,7 @@ cnx = MySQLdb.connect(**config)
 
 
 print('running speedtest')
-speed = subprocess.check_output(["./speedtest-cli","--csv"])
+speed = subprocess.check_output(["/speedtest-cli","--csv"])
 print (speed)
 f = StringIO(speed)
 reader = csv.reader(f, delimiter=',')
