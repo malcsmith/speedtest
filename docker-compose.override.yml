@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+    speedtest:
+      depends_on:
+        - influxdb 
+      command: bash -c "python3 ./test.py ; sleep 1000000" 
+      #command: bash  -c "sleep 100000000"
+      stdin_open: true # docker run -i
+      tty: true  
+      volumes:
+           - .:/live     
+
+    influxdb:
+        image: influxdb:latest
+        restart: always
+        container_name: influxdb
+        ports:
+        - "8083:8083"
+        - "8086:8086"
+        - "8090:8090"
